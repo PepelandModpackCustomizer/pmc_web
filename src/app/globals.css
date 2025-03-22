@@ -3,7 +3,8 @@
 :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --header-height: 5rem;
+    --accent: #2dd4bf;
+    --header-height: 4.5rem;
 }
 
 body {

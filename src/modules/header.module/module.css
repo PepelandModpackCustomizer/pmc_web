@@ -75,6 +75,7 @@
     margin-left: 1vh;
 }
 
+
 .headerNavigationContainer {
     display: flex;
     flex-direction: row;
@@ -84,11 +85,31 @@
     flex-basis: 0;
 }
 
+.headerNavigationLinkAccent {
+    color: var(--accent);
+}
+
+
 .headerAccountContainer {
+    height: 100%;
+    width: fit-content;
+
     display: flex;
     flex-direction: row;
     justify-content: right;
+    align-items: center;
 
     flex-grow: 1;
     flex-basis: 0;
+}
+
+.headerAccountLogoutButton {
+    padding-left: 1%;
+    height: 40%;
+    width: fit-content;
+}
+
+.headerAccountLogoutIcon {
+    height: 100%;
+    width: auto;
 }

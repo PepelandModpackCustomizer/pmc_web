@@ -13,7 +13,6 @@ export async function POST(req: NextRequest) {
         ) {
             throw new Error("Can't find required .env data")
         }
-        // console.log(`I have following data: ${process.env.DISCORD_APP_REDIRECT_URI}; ${process.env.DISCORD_APP_CLIENT_ID}; ${process.env.DISCORD_APP_CLIENT_SECRET}; ${code}`);
         const tokenResponse = await DiscordOAuth.exchangeCode(
             code,
             process.env.DISCORD_APP_REDIRECT_URI,
@@ -26,7 +25,6 @@ export async function POST(req: NextRequest) {
         const cookie = await cookies();
         cookie.set("access_token", tokenResponse.data?.["access_token"], {maxAge: 604800})
         cookie.set("refresh_token", tokenResponse.data?.["refresh_token"], {maxAge: 604800})
-        // console.log(`Cookie: ${cookie.toString()}`)
         return NextResponse.json(
             tokenResponse.data,
             {status: 200, headers: {'Set-Cookie': cookie.toString()}}
