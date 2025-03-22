@@ -10,7 +10,7 @@ import Link from "next/link";
 function LogoComponent() {
     return <div className={"headerLogoContainer"}>
         <Image src={"/logo.svg"} alt={"Pepeland Logo"} width={1} height={1} className={"headerLogoImage"}/>
-        <h1 className={"headerLogoTitle"}>Pepeland Modpack Customizer</h1>
+        {/*<span className={"headerLogoTitle"}>Pepeland Modpack Customizer</span>*/}
     </div>
 }
 
@@ -95,9 +95,7 @@ function AccountComponent() {
 
     const discord_login_url = "https://discord.com/oauth2/authorize?client_id=1352541404332556288&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2Fvia%2Fdiscord%2F&scope=identify+email+guilds"
 
-    if (isLoading) return <div className={"headerAccountContainer"}>
-        <>Loading...</>
-    </div>;
+    if (isLoading) return <div className={"headerAccountContainer"} />; // returning empty div to not break flex in header
     if (!isAuth.current || !userData.current) {
         return <div className={"headerAccountContainer"}>
         <a href={discord_login_url}>Войти</a>
@@ -105,7 +103,7 @@ function AccountComponent() {
     }
 
     if (!userData.current?.["global_name"]) return <div className={"headerAccountContainer"}>
-        <a href={discord_login_url}>Войти (ошибка)</a>
+        <a href={discord_login_url}>Войти</a>
     </div>;
 
     return <AccountAuthorisedComponent display_name={userData.current["global_name"]} />

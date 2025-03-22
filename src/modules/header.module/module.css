@@ -1,6 +1,9 @@
 .header {
     display: flex;
     justify-content: center;
+    z-index: 9999;
+    position: fixed;
+    width: 100%;
 }
 
 .headerContainer {
@@ -112,4 +115,5 @@
 .headerAccountLogoutIcon {
     height: 100%;
     width: auto;
+    color: #2dd4bf;
 }

@@ -1,5 +1,7 @@
 "use client"
 
+import "./module.css"
+
 interface ModuleProps {
 
 }
