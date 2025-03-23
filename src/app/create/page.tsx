@@ -1,4 +1,4 @@
-import Header from "@/modules/header.module/module"
+import Header from "@/modules/Header/module"
 
 export default function Page() {
     return <>

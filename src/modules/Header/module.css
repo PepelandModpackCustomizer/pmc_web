@@ -88,6 +88,10 @@
     flex-basis: 0;
 }
 
+.headerNavigationLink {
+}
+
+
 .headerNavigationLinkAccent {
     color: var(--accent);
 }
@@ -116,4 +120,13 @@
     height: 100%;
     width: auto;
     color: #2dd4bf;
+}
+
+.headerRoundOnHover {
+    padding: .4rem 1rem;
+    border-radius: 2rem;
+}
+
+.headerRoundOnHover:hover {
+    background: rgb(39 39 42);
 }
