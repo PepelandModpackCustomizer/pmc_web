@@ -5,6 +5,7 @@ import Image from "next/image";
 import {useEffect, useRef, useState} from "react";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
+
 // import {cookies} from "next/headers";
 
 
@@ -112,11 +113,11 @@ function AccountComponent() {
                     method: "POST",
                     body: null
                 })
-                const responseBody = await response.json()
-                if (!response.ok || !responseBody) {
+
+                userData.current = await response.json();
+                if (!response.ok || !userData.current) {
                     throw new Error("Failed to fetch");
                 }
-                userData.current = responseBody;
                 setLoadingState(1)
             } catch (error) {
                 setLoadingState(2)
@@ -126,15 +127,15 @@ function AccountComponent() {
         decodeValidateToken()
     }, []);
 
-    if (loadingState == 0 || !userData.current) {
-        return <div className={"headerAccountContainer"}></div>
-    } else if (loadingState == 1) {
-        return <AccountAuthorisedComponent display_name={userData.current["user"]["username"]} />
-    } else {
+    if (loadingState == 2) {
         const discord_login_url = process.env.NEXT_PUBLIC_DISCORD_APP_LOGIN_URL
         return <div className={"headerAccountContainer"}>
             <a href={discord_login_url} className={"headerRoundOnHover"}>Войти</a>
         </div>;
+    } else if (loadingState == 0 || !userData.current) {
+        return <div className={"headerAccountContainer"}></div>
+    } else {
+        return <AccountAuthorisedComponent display_name={userData.current["user"]["username"]} />
     }
 
 
