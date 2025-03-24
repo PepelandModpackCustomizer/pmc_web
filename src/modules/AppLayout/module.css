@@ -1,4 +1,6 @@
 .pageContentContainer {
     width: 100%;
-    height: 100vh;
+    /*height: calc(100vh - var(--footer-visible-height));*/
+    /*padding: calc(var(--footer-visible-height) / 2) 0;*/
+    height: calc(100vh - var(--footer-visible-height));
 }

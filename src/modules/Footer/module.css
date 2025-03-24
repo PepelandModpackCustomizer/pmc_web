@@ -1,5 +1,6 @@
 .footerContainer {
     max-width: 85rem;
+    max-height: var(--footer-height);
     margin: 0 auto;
     padding: 1.5rem 0;
     font-weight: 400;
