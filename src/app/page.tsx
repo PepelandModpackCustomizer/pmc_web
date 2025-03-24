@@ -1,10 +1,9 @@
 "use client"
 
-import Header from "@/modules/Header/module";
-import Footer from "@/modules/Footer/module";
 import Link from "next/link";
 import Image from "next/image";
 import "./style.css"
+import AppLayout from "@/modules/AppLayout/module";
 
 function PageContent() {
     return <div className={"pageContentContainer"}>
@@ -19,14 +18,11 @@ function PageContent() {
                 Создать
             </Link>
         </div>
-
     </div>
 }
 
 export default function Page() {
-    return <>
-        <Header />
+    return <AppLayout>
         <PageContent />
-        <Footer />
-    </>
+    </AppLayout>
 }

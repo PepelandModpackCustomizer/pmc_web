@@ -1,7 +1,7 @@
-import Header from "@/modules/Header/module"
+import AppLayout from "@/modules/AppLayout/module";
 
 export default function Page() {
-    return <>
-        <Header />
-    </>
+    return <AppLayout>
+        Hello world
+    </AppLayout>
 }
