@@ -6,8 +6,6 @@ import {useEffect, useRef, useState} from "react";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
 
-// import {cookies} from "next/headers";
-
 
 function LogoComponent() {
     return <div className={"headerLogoContainer"}>

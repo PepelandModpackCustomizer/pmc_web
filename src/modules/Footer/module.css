@@ -1,2 +1,7 @@
 .footerContainer {
+    max-width: 85rem;
+    margin: 0 auto;
+    padding: 1.5rem 0;
+    font-weight: 400;
+    font-size: 1.1rem;
 }
