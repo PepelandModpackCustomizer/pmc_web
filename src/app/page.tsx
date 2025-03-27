@@ -12,7 +12,7 @@ function PageContent() {
             <span>Твоя сборка - </span>
             <span className={"accent"}>твои правила</span>
         </h2>
-        <Link href={"/create"} className={"titlePrimaryButton"}>
+        <Link href={"/editor"} className={"titlePrimaryButton"}>
             <Image className={"titlePrimaryButtonIcon"} src={"/settings.svg"} alt={"settings icon"} height={1}
                    width={1}/>
             Создать
@@ -21,7 +21,7 @@ function PageContent() {
 }
 
 export default function Page() {
-    return <AppLayout>
-        <PageContent/>
+    return <AppLayout isFlex={true}>
+        <PageContent />
     </AppLayout>
 }
