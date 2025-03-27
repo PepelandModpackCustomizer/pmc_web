@@ -33,12 +33,11 @@ export async function POST(req: NextRequest) {
         })
         const revokedTokensBody = await revokedTokensRes.json()
         const revokedTokens = revokedTokensBody["tokens"]
-
         const jwtId = hash.sha256().update(`${data.user["user_id"]};${revokedTokens.length}`).digest("hex")
         // console.log(`Testing with jwtId ${jwtId}`)
         _data = jwt.verify(token, `${process.env.JWT_SECRET}`, {jwtid: jwtId})
         return NextResponse.json(data, {status: 200})
     } catch (error) {
-        return NextResponse.json({}, {status: 500})
+        return NextResponse.json({}, {status: 401})
     }
 }
