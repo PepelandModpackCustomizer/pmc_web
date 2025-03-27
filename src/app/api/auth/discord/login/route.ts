@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
         // const sql = neon(`${process.env.DATABASE_URL}`);
         const [userScopesRes] = await sql(`SELECT permissions FROM Users WHERE id = ${user_id}`)
         const userScopes = userScopesRes["permissions"]
-        console.log(`userId: ${user_id}; userScope: ${JSON.stringify(userScopes)}`)
+        // console.log(`userId: ${user_id}; userScope: ${JSON.stringify(userScopes)}`)
         if (!userScopes) {
             return NextResponse.json({}, {status: 500})
         }
