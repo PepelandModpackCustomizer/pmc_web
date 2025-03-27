@@ -1,7 +1,11 @@
-import AppLayout from "@/modules/AppLayout/module";
+"use server"
 
-export default function Page() {
+import AppLayout from "@/modules/AppLayout/module";
+import ModpackEditor from "@/modules/ModpackEditor/module";
+import "./style.css";
+
+export default async function Page() {
     return <AppLayout>
-        Hello world
+        <ModpackEditor />
     </AppLayout>
 }
