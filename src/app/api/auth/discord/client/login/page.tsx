@@ -1,9 +1,59 @@
 "use client"
 
 import {useRouter, useSearchParams} from "next/navigation";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState, Suspense} from "react";
 import Link from "next/link";
 import "./style.css"
+
+function LoginApiWork() {
+    const code = useSearchParams().get("code");
+    const [loadingState, setLoadingState] = useState(0);
+    const router = useRouter();
+    // 0 - loading
+    // 1 - success
+    // 2 - error
+
+    useEffect(() => {
+        const login = async () => {
+            try {
+                const response = await fetch("/api/auth/discord/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({"code": code})
+                })
+                const responseBody = await response.json()
+                if (!response.ok) {
+                    throw new Error(`${response.status} ${response.statusText} ${responseBody["error"]}`);
+                }
+                setLoadingState(1)
+                router.push("/")
+            } catch (error) {
+                setLoadingState(2)
+                console.error(error)
+            }
+
+        }
+
+        login()
+    }, []);
+    if (loadingState == 0) {
+        return <div className={"pageContentContainer"}>Подождите...</div>
+
+    } else if (loadingState == 1) {
+        return <div className={"pageContentContainer"}>Успешно!</div>
+
+    } else {
+        return <div className={"pageContentContainer"}>
+                <span>
+                    Ошибка! Попробуйте еще раз. Если проблема сохранится - обратитесь в
+                    <Link className={"accent"} href={"/support"}> поддержку.</Link>
+                </span>
+            </div>
+
+    }
+}
 
 export default function Page() {
     // const [isLoading, setIsLoading] = useState(true);
@@ -114,48 +164,7 @@ export default function Page() {
     // }
 
 
-    const code = useSearchParams().get("code");
-    const [loadingState, setLoadingState] = useState(0);
-    const router = useRouter();
-    // 0 - loading
-    // 1 - success
-    // 2 - error
-
-    useEffect(() => {
-        const login = async () => {
-            try {
-                const response = await fetch("/api/auth/discord/login", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({"code": code})
-                })
-                const responseBody = await response.json()
-                if (!response.ok) {
-                    throw new Error(`${response.status} ${response.statusText} ${responseBody["error"]}`);
-                }
-                setLoadingState(1)
-                router.push("/")
-            } catch (error) {
-                setLoadingState(2)
-                console.error(error)
-            }
-
-        }
-
-        login()
-    }, []);
-    if (loadingState == 0) {
-        return <div className={"pageContentContainer"}>Подождите...</div>
-    } else if (loadingState == 1) {
-        return <div className={"pageContentContainer"}>Успешно!</div>
-    } else {
-        return <div className={"pageContentContainer"}>
-            <span>
-                Ошибка! Попробуйте еще раз. Если проблема сохранится - обратитесь в
-                <Link className={"accent"} href={"/support"}> поддержку.</Link>
-            </span>
-        </div>
-    }
+    return <Suspense>
+        <LoginApiWork />
+    </Suspense>
 }
