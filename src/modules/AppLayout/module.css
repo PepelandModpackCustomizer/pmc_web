@@ -1,6 +1,21 @@
 .pageContentContainer {
     width: 100%;
-    /*height: calc(100vh - var(--footer-visible-height));*/
-    /*padding: calc(var(--footer-visible-height) / 2) 0;*/
-    height: calc(100vh - var(--footer-visible-height));
+    margin-top: var(--header-height);
+    margin-left: auto;
+    margin-right: auto;
+    min-height: calc(100vh - var(--footer-visible-height) - var(--header-height));
+    font-size: 1.5rem;
+}
+
+.pageContentContainerFlex {
+    position: relative;
+    width: 100%;
+    top: calc(var(--footer-visible-height) / 2);
+    min-height: calc(100vh - var(--footer-visible-height));
+    font-size: 1.5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

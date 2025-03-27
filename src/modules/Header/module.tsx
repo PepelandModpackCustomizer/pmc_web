@@ -10,7 +10,7 @@ import Link from "next/link";
 function LogoComponent() {
     return <div className={"headerLogoContainer"}>
         <Image src={"/logo.svg"} alt={"Pepeland Logo"} width={1} height={1} className={"headerLogoImage"}/>
-        {/*<span className={"headerLogoTitle"}>Pepeland Modpack Customizer</span>*/}
+        <span className={"headerLogoTitle"}>Pepeland Modpack Customizer</span>
     </div>
 }
 
