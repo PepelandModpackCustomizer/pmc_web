@@ -23,6 +23,7 @@ export async function POST(req: NextRequest) {
             data = _data
         }
         // console.log("passed!")
+        // console.log(data)
 
         const revokedTokensRes = await fetch(`${process.env.MAIN_HOSTNAME}/api/auth/get_revoked_tokens`, {
             method: "POST",

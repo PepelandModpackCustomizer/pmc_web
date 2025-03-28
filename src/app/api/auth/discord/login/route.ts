@@ -92,10 +92,14 @@ export async function POST(req: NextRequest) {
         const accessSessionToken = jwt.sign({
             "type": "access",
             "scopes": userScopes,
+            "auth_methods": {
+                "discord": {
+                    "user_id": discord_user_id
+                }
+            },
             "user": {
                 "user_id": user_id,
                 "username": userData["global_name"],
-                "discord_id": userData["id"],
                 "email": userData["email"]
             }
         }, `${process.env.JWT_SECRET}`, {

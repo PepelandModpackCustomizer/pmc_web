@@ -1,5 +1,5 @@
 .modpackEditorContentList {
-    width: 30%;
+    width: 40%;
     background: var(--background_second);
     height: calc(100vh - var(--header-height) - var(--footer-visible-height));
     font-weight: 600;
@@ -16,6 +16,8 @@
 }
 
 .modpackEditorCategoryTitle {
+    height: 4rem;
+    width: 100%;
     padding: .7rem;
     display: flex;
     flex-direction: row;
