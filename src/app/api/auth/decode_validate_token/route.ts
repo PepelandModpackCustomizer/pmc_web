@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
         // console.log(`Testing with jwtId ${jwtId}`)
         _data = jwt.verify(token, `${process.env.JWT_SECRET}`, {jwtid: jwtId})
         return NextResponse.json(data, {status: 200})
-    } catch (error) {
+    } catch {
         return NextResponse.json({}, {status: 401})
     }
 }

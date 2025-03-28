@@ -1,7 +1,7 @@
 "use client"
 
 import {useRouter, useSearchParams} from "next/navigation";
-import {useEffect, useState, Suspense} from "react";
+import React, {useEffect, useState, Suspense} from "react";
 import Link from "next/link";
 import "./style.css"
 

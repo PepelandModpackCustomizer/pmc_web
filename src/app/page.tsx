@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import "./style.css"
 import AppLayout from "@/modules/AppLayout/module";
+import React from "react"
 
 function PageContent() {
     return <div className={"titleContainer"}>

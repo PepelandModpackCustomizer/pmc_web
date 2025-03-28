@@ -2,6 +2,7 @@
 
 import "./module.css"
 import Link from "next/link";
+import React from "react";
 
 interface ModuleProps {
 

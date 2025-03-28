@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({"error": "exchange code"}, {status: 500})
     }
     const accessToken = tokenResponse.data["access_token"]
-    const refreshToken = tokenResponse.data["refresh_token"]
+    // const refreshToken = tokenResponse.data["refresh_token"]
 
     const userDataRes = await DiscordOAuth.getCurrentUser(accessToken)
     if (!userDataRes || userDataRes.status == "error" || !userDataRes.data || !userDataRes.data["id"].toString()) {

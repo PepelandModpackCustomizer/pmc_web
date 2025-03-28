@@ -5,6 +5,7 @@ import Image from "next/image";
 import {useEffect, useRef, useState} from "react";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
+import React from "react";
 
 
 function LogoComponent() {
@@ -117,7 +118,7 @@ function AccountComponent() {
                     throw new Error("Failed to fetch");
                 }
                 setLoadingState(1)
-            } catch (error) {
+            } catch {
                 setLoadingState(2)
             }
         }
