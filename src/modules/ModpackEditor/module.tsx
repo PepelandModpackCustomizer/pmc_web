@@ -1,6 +1,7 @@
 "use client"
 
 import {JSX, useState} from "react";
+import Image from "next/image"
 import "./module.css"
 
 interface ModProps {
@@ -23,9 +24,12 @@ function Category({ title, mods }: CategoryProps) {
     const [expanded, setExpanded] = useState(false)
 
     return <div className={"modpackEditorCategory"}>
-        <div className={"modpackEditorCategoryTitle"} onClick={() => {setExpanded((prev) => !prev)}}>{ title }</div>
-        <div className={"modpackEditorCategorySeparator"} style={expanded ? {} : {display: "none"}}></div>
-        <div className={"modpackEditorCategoryContent"} style={expanded ? {} : {display: "none"}}>
+        <button  className={"modpackEditorCategoryTitle"} onClick={() => {setExpanded((prev) => !prev)}}>
+            <Image src={expanded ? "/minus.svg" : "/plus.svg"} alt={expanded ? "minus" : "plus"} width={1} height={1} style={{height: "100%", width: "auto", padding: ".1rem"}}/>
+            <span style={{marginLeft: ".6rem"}}>{title}</span>
+        </button>
+        <div className={"modpackEditorCategorySeparator"} style={expanded ? undefined : {display: "none"}}></div>
+        <div className={"modpackEditorCategoryContent"} style={expanded ? undefined : {display: "none"}}>
             { mods }
         </div>
     </div>
