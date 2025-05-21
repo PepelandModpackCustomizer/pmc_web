@@ -1,8 +1,6 @@
-import {IApiResponse} from "@/utils/apiResponses";
-
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_HOSTNAME ??
     process.env.NEXT_PUBLIC_MAIN_HOSTNAME + "/api" ??
-    "http://localhost:3000/api"
+    "http://localhost:3001/api"
 
 namespace Core {
     export async function makeRequest (
@@ -13,7 +11,7 @@ namespace Core {
         authType: "Basic" | "Bearer" = "Bearer",
         credentials: "omit" | "include" | "same-origin" = "include",
         contentType: string = "application/json"
-    ): Promise<IApiResponse | undefined> {
+    ): Promise<object | undefined> {
         try {
             const headers = new Headers()
             if (auth) {
@@ -48,7 +46,7 @@ namespace Core {
                 throw new Error(`Status ${response.status} was received from api endpoint ${endpoint}`)
             }
             const jsonResponse = await response.json();
-            return jsonResponse as IApiResponse;
+            return jsonResponse;
         } catch (err) {
             console.error(err)
         }
@@ -56,4 +54,11 @@ namespace Core {
     }
 }
 
-export {}
+export namespace Auth {
+    export async function loginDiscord(code: string) {
+        const res = Core.makeRequest(
+            `/auth/discord?code=${code}`,
+            "GET"
+        )
+    }
+}
