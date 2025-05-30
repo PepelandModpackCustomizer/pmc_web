@@ -1,9 +1,10 @@
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_HOSTNAME ??
+const apiBaseUrl =
+    process.env.NEXT_PUBLIC_API_HOSTNAME ??
     process.env.NEXT_PUBLIC_MAIN_HOSTNAME + "/api" ??
-    "http://localhost:3001/api"
+    "http://localhost:3001/api";
 
 namespace Core {
-    export async function makeRequest (
+    export async function makeRequest(
         endpoint: string,
         method: "GET" | "POST" = "GET",
         data?: {},
@@ -13,12 +14,15 @@ namespace Core {
         contentType: string = "application/json"
     ): Promise<object | undefined> {
         try {
-            const headers = new Headers()
+            const headers = new Headers();
             if (auth) {
                 if (authType === "Basic" && typeof auth === "string") {
                     headers.append("Authorization", `Basic ${auth}`);
                 } else if (authType === "Bearer" && typeof auth === "object") {
-                    headers.append("Authorization", `Bearer ${btoa(auth.join(":"))}`);
+                    headers.append(
+                        "Authorization",
+                        `Bearer ${btoa(auth.join(":"))}`
+                    );
                 }
             }
             let body;
@@ -28,37 +32,33 @@ namespace Core {
                     break;
                 }
                 case "application/x-www-form-urlencoded": {
-                    body = new URLSearchParams(data).toString()
+                    body = new URLSearchParams(data).toString();
                 }
             }
             while (endpoint.startsWith("/")) {
-                endpoint = endpoint.slice(1)
+                endpoint = endpoint.slice(1);
             }
-            const response = await fetch(
-                apiBaseUrl + "/" + endpoint, {
-                    method: method,
-                    headers: headers,
-                    credentials: credentials,
-                    body: body
-                }
-            )
+            const response = await fetch(apiBaseUrl + "/" + endpoint, {
+                method: method,
+                headers: headers,
+                credentials: credentials,
+                body: body
+            });
             if (!response.ok) {
-                throw new Error(`Status ${response.status} was received from api endpoint ${endpoint}`)
+                throw new Error(
+                    `Status ${response.status} was received from api endpoint ${endpoint}`
+                );
             }
             const jsonResponse = await response.json();
             return jsonResponse;
         } catch (err) {
-            console.error(err)
+            console.error(err);
         }
-
     }
 }
 
 export namespace Auth {
     export async function loginDiscord(code: string) {
-        const res = Core.makeRequest(
-            `/auth/discord?code=${code}`,
-            "GET"
-        )
+        const res = Core.makeRequest(`/auth/discord?code=${code}`, "GET");
     }
 }
