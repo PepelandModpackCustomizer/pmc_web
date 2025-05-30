@@ -1,7 +1,7 @@
 .header {
     height: var(--header_height);
 
-    margin: 0 var(--header_marin);
+    margin: 0 var(--header_margin);
 
     display: flex;
     flex-direction: row;

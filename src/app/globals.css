@@ -4,7 +4,7 @@
     --background: #0a0a0a;
     --foreground: #ededed;
     --header_height: 4rem;
-    --header_marin: 4vw;
+    --header_margin: 4vw;
 }
 
 body {
