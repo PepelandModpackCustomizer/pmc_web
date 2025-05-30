@@ -1,16 +1,27 @@
 "use server";
 
 import "./style.css";
-import { Suspense } from "react";
-import { wait } from "next/dist/lib/wait";
-// import {HeaderAccountLoaded} from "@/components/Header/client";
+import NextLink from "next/link"
+import {NavLink, NavLinkProps} from "./client";
+import React, { Suspense } from "react";
+
+// interface NavLinkProps {
+//     href: string,
+//     text: string
+// }
+//
+// async function NavLink({href, text}: NavLinkProps) {
+//     return <NextLink href={href} className={"header__nav__link"}>{text}</NextLink>
+// }
 
 async function HeaderLogo() {
     return <div className={"header__logo"}></div>;
 }
 
-async function HeaderNavigation() {
-    return <div className={"header__nav"}></div>;
+async function HeaderNavigation({links}: {links: NavLinkProps[]}) {
+    return <div className={"header__nav"}>
+        {links.map((val, i) => <NavLink {...val} key={i} />)}
+    </div>;
 }
 
 async function HeaderAccount() {
@@ -31,11 +42,15 @@ async function HeaderAccountFallback() {
     return <></>;
 }
 
-export default async function Header() {
+interface HeaderProps {
+    links: NavLinkProps[]
+}
+
+export default async function Header({links}: HeaderProps) {
     return (
-        <header className={"header bg-red-600"}>
+        <header>
             <HeaderLogo />
-            <HeaderNavigation />
+            <HeaderNavigation links={links} />
             <HeaderAccount />
         </header>
     );

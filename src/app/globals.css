@@ -3,6 +3,7 @@
 :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --accent: var(--color-teal-500);
     --header_height: 4rem;
     --header_margin: 4vw;
 }
@@ -15,4 +16,8 @@ body {
 .root-container {
     margin: 0 auto;
     width: fit-content;
+}
+
+.accent {
+    color: var(--accent);
 }
